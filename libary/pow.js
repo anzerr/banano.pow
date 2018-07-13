@@ -1,7 +1,7 @@
 'use strict';
 
 const blake = require('blake2b'),
-	util = require('./util.js'),
+	util = require('uint'),
 	Work = require('./Work.js');
 
 class Pow {
