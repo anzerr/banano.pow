@@ -3,13 +3,14 @@
 const cp = require('child_process'),
 	Pow = require('./libary/pow.js');
 
+const base = require('path').resolve(__dirname).replace(/\\/g, '/');
 module.exports = {
-	findPow: (hex) => {
-		const thread = Math.max(require('os').cpus().length, 2);
+	findPow: (hex, option = {}) => {
+		const thread = option.thread || Math.max(require('os').cpus().length, 1);
 		let workers = [];
 		return new Promise((resolve) => {
 			for (let i = 0; i < thread; i++) {
-				let worker = cp.fork('./libary/worker.js', {env: {
+				let worker = cp.fork(base + '/libary/worker.js', {env: {
 					id: i,
 					hex: hex
 				}});
