@@ -3,10 +3,7 @@
 class Work {
 
 	constructor(ar) {
-		this.work = new Uint8Array(8);
-		for (let i in ar) {
-			this.work[i] = ar[i];
-		}
+		this.work = Buffer.from(ar);
 	}
 
 	increment() {
