@@ -1,6 +1,6 @@
 {
 	"name": "banano.pow",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -11,8 +11,6 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"bignumber.js": "^7.2.1",
-		"blake2b": "git+https://github.com/anzerr/blake2b.git",
-		"uint": "git+https://github.com/anzerr/uint.git"
+		"blake2b": "git+https://github.com/anzerr/blake2b.git"
 	}
 }

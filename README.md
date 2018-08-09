@@ -7,4 +7,4 @@ Made this to understand the pow better this could help you if you looking for th
 If you want to how the pow works look in ["libary/pow.js"](https://github.com/anzerr/banano.pow/blob/master/libary/pow.js) the other files are just to fork to use the move cores
 
 #### `Around 30 speed`
-On a i5-4440 @ 3.10GHz I get around 175 kH/s don't know how bad that is compared to other. Probability slow?
+On a i5-4440 @ 3.10GHz I get around ~~175 kH/s~~ 320kH/s don't know how bad that is compared to other. Probability slow?

@@ -135,7 +135,7 @@ module.exports = exports = {
 
         // ECMAScript 6 support
         "no-constant-condition": OFF,
-        "arrow-body-style": [ ERROR, "always" ],
+        "arrow-body-style": [ OFF, "always" ],
         "arrow-parens": [ ERROR, "always" ],
         "arrow-spacing": [ ERROR, { "before": true, "after": true }],
         "constructor-super": ERROR,

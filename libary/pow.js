@@ -1,8 +1,7 @@
 'use strict';
 
 const blake = require('blake2b'),
-	Work = require('./Work.js'),
-	BigNumber = require('bignumber.js');
+	Work = require('./work.js');
 
 class Pow {
 
@@ -17,19 +16,19 @@ class Pow {
 			this._running = false;
 		}
 		this._i = 0;
-		this.threshold = new BigNumber('0xfffffc0000000000'); // nano 0xffffffc000000000
+		this.threshold = 0xfffffc0000000000; // nano 0xffffffc000000000
 	}
 
 	hash(work) {
 		let context = blake.createHash({digestLength: 8});
-		context.update(Buffer.from(work).reverse());
+		context.update(work);
 		context.update(this._hex);
 		return Buffer.from(context.digest()).reverse();
 	}
 
-	isValid(work) {
-		let w = this.hash(work);
-		return new BigNumber(w.toString('hex'), 16).isGreaterThanOrEqualTo(this.threshold);
+	isValid(work, isReverse) {
+		let w = this.hash(isReverse ? work : Buffer.from(work).reverse());
+		return parseInt(w.toString('hex'), 16) >= this.threshold;
 	}
 
 	stop() {
@@ -38,9 +37,8 @@ class Pow {
 	}
 
 	work(cd) {
-		this._i = 0;
 		while (this._running) {
-			if (this.isValid(this._work.get())) {
+			if (this.isValid(this._work.reverse(), true)) {
 				return cd(this._result = this._work.get());
 			}
 			if (this._i > this._end || !this._end) {
@@ -48,9 +46,7 @@ class Pow {
 			}
 			this._work.increment(this._i++);
 			if (this._i % 10000 === 0) {
-				setTimeout(() => {
-					this.work(cd);
-				}, 1);
+				setTimeout(() => this.work(cd), 0); // unblock to exit
 				break;
 			}
 		}
