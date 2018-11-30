@@ -1,22 +1,19 @@
 'use strict';
 
-const blake = require('blake2b'),
-	Work = require('./work.js');
+const blake = require('blake2b');
 
 class Pow {
 
-	constructor(hex, start, end) {
+	constructor(hex) {
 		this._hex = hex instanceof Buffer ? hex : Buffer.from(hex, 'hex');
-		this._end = end;
-		if (start) {
-			this._start = start;
-			this._work = new Work(start);
-			this._running = true;
-		} else {
-			this._running = false;
-		}
-		this._i = 0;
+		this._running = false;
 		this.threshold = 0xfffffc0000000000; // nano 0xffffffc000000000
+	}
+
+	withWork(w) {
+		this._work = w;
+		this._running = true;
+		return this;
 	}
 
 	hash(work) {
@@ -33,19 +30,23 @@ class Pow {
 
 	stop() {
 		this._running = false;
-		return this._work.get();
+		return [this._work.get(), this._work.runs()];
 	}
 
 	work(cd) {
 		while (this._running) {
 			if (this.isValid(this._work.reverse(), true)) {
-				return cd(this._result = this._work.get());
+				this._result = this._work.get();
+				return cd([
+					this._result,
+					this._work.runs()
+				]);
 			}
-			if (this._i > this._end || !this._end) {
+			if (this._work.end()) {
 				return cd(null);
 			}
-			this._work.increment(this._i++);
-			if (this._i % 10000 === 0) {
+			this._work.increment();
+			if (this._work.pause()) {
 				setTimeout(() => this.work(cd), 0); // unblock to exit
 				break;
 			}

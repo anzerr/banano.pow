@@ -2,20 +2,20 @@
 
 const pow = require('./index.js');
 
-let find = (h) => {
-	return pow.findDetailPow(h).then((res) => {
+let find = (h, type) => {
+	return pow.find(h, {type: type, verbose: true}).then((res) => {
 		let total = 0;
 		for (let i in res.workload) {
 			total += res.workload[i];
 		}
-		console.log('found', res.result.toString('hex'), 'in', (res.time / 1e9).toFixed(3), 'sec', Math.floor(1e9 / (res.time / total) / 1000), 'kH/s');
+		console.log('found', res.result.toString('hex'), 'hashes', total, 'in', (res.time / 1e9).toFixed(3), 'sec', Math.floor(1e9 / (res.time / total) / 1000), 'kH/s');
 		return pow.isValid(h, res.result.toString('hex'));
 	});
 };
 
-find('4C0E1E2F29B2723B20CBF678799103B9876A1B2005A147E9992BE2AADA410B5D').then((res) => {
+find('4C0E1E2F29B2723B20CBF678799103B9876A1B2005A147E9992BE2AADA410B5D', 'random').then((res) => {
 	console.log('isValid 1', res);
-	return find('4E83A1A34957F4F7E2AA920B9D615782D2CC727B6703EB7B9236B97B57362C0D');
+	return find('4E83A1A34957F4F7E2AA920B9D615782D2CC727B6703EB7B9236B97B57362C0D', 'incremental');
 }).then((res) => {
 	console.log('isValid 2', res);
 });
