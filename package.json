@@ -14,7 +14,6 @@
 		"blake2b": "git+https://github.com/anzerr/blake2b.git"
 	},
 	"devDependencies": {
-		"eslint": "5.11.1",
 		"eslint-config-basic": "git+ssh://git@github.com/anzerr/eslintrc.git"
 	},
 	"eslintConfig": {
