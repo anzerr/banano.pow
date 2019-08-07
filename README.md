@@ -6,6 +6,7 @@ Made this to understand the pow better this could help you if you looking for th
 #### `Install`
 ``` bash
 npm install --save git+https://github.com/anzerr/banano.pow.git
+npm install --save @anzerr/banano.pow
 ```
 
 #### `Where to look`
