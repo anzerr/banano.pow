@@ -1,5 +1,7 @@
 
 ### `Intro`
+![GitHub Actions status | publish](https://github.com/anzerr/banano.pow/workflows/publish/badge.svg)
+
 This is an example of the proof of work used in block generation in nano/banano.
 Made this to understand the pow better this could help you if you looking for that :)
 
