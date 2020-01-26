@@ -1,34 +1,39 @@
 {
 	"name": "banano.pow",
 	"version": "1.1.6",
-	"description": "",
+	"keywords": [
+		"banano",
+		"nodejs",
+		"pow",
+		"util"
+	],
+	"homepage": "https://github.com/anzerr/banano.pow#readme",
+	"bugs": {
+		"url": "https://github.com/anzerr/banano.pow/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:anzerr/banano.pow.git"
+	},
+	"license": "MIT",
+	"author": "anzerr",
 	"main": "index.js",
+	"types": "index.d.ts",
 	"scripts": {
 		"test": "node test.js",
 		"commit": "git add . && git commit -m \"fast save\" && git push origin master"
 	},
-	"keywords": [],
-	"author": "anzerr",
-	"license": "MIT",
+	"eslintConfig": {
+		"extends": "eslint-config-basic"
+	},
 	"dependencies": {
 		"blake2b": "git+https://github.com/anzerr/blake2b.git"
 	},
 	"devDependencies": {
 		"eslint-config-basic": "git+ssh://git@github.com/anzerr/eslintrc.git"
 	},
-	"eslintConfig": {
-		"extends": "eslint-config-basic"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git@github.com:anzerr/banano.pow.git"
-	},
 	"engines": {
 		"node": ">= 0.10.0"
 	},
-	"types": "index.d.ts",
-	"bugs": {
-		"url": "https://github.com/anzerr/banano.pow/issues"
-	},
-	"homepage": "https://github.com/anzerr/banano.pow#readme"
+	"description": ""
 }
